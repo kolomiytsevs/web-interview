@@ -15,6 +15,7 @@ class App extends Component {
       userId: 1,
       selectedAppointmentType: 'gp',
       availableSlots: [],
+      selectedAppointment: null,
       error: null,
     }
     this.handleConsultantSelect = this.handleConsultantSelect.bind(this)
@@ -44,6 +45,11 @@ class App extends Component {
     this.setState({ selectedAppointmentType })
   }
 
+  handleAppointmentSelect(slot) {
+    const time = slot.time
+    console.log(time)
+  }
+
   handleSubmit() {
     console.log('appointment booked')
   }
@@ -67,6 +73,7 @@ class App extends Component {
     }
 
     const consultantTypes = ['GP', 'Therapist', 'Physio', 'Specialist']
+    console.log(slots)
 
     return (
       <div className="app">
@@ -88,9 +95,7 @@ class App extends Component {
               <li
                 key={index}
                 className="appointment-button"
-                onClick={() => {
-                  this.setState({ selectedAppointment: slot })
-                }}
+                onClick={() => this.handleAppointmentSelect(slot)}
               >
                 {slot.time}
               </li>
