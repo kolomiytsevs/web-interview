@@ -11,14 +11,19 @@ const AppointmentTimeField = ({
   <div>
     <strong>Date &amp; Time</strong>
     <br />
-    {slots.map((slot, index) => (
-      <AppointmentSelectButton
-        slot={slot}
-        handleAppointmentSelect={handleAppointmentSelect}
-        key={index}
-        selectedAppointment={selectedAppointment}
-      />
-    ))}
+
+    {slots.length ? (
+      slots.map((slot, index) => (
+        <AppointmentSelectButton
+          slot={slot}
+          handleAppointmentSelect={handleAppointmentSelect}
+          key={index}
+          selectedAppointment={selectedAppointment}
+        />
+      ))
+    ) : (
+      <p>No Appointment Available</p>
+    )}
   </div>
 )
 
