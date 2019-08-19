@@ -18,6 +18,7 @@ class App extends Component {
       error: null,
     }
     this.handleConsultantSelect = this.handleConsultantSelect.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentDidMount() {
@@ -41,6 +42,10 @@ class App extends Component {
       .getAttribute('name')
       .toLowerCase()
     this.setState({ selectedAppointmentType })
+  }
+
+  handleSubmit() {
+    console.log('appointment booked')
   }
 
   render() {
@@ -96,12 +101,7 @@ class App extends Component {
             <textarea />
           </div>
           <div>
-            <div
-              className="button"
-              onClick={() => {
-                /* TODO: submit the data */
-              }}
-            >
+            <div className="button" onClick={this.handleSubmit}>
               Book appointment
             </div>
           </div>
