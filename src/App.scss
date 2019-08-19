@@ -22,6 +22,19 @@
   text-align: center;
 }
 
+.selected {
+  box-sizing: border-box;
+  padding: 12px;
+  background-color: rgb(255,255,255);
+  color: rgb(0,0,0);
+  width: calc(25% - 12px);
+  height: 42px;
+  margin-right: 12px;
+  display: inline-block;
+  text-align: center;
+  border: solid lightgrey 1px;
+}
+
 h2 {
   &.h6 {
     font-size: 24px;

@@ -3,9 +3,13 @@ import PropTypes from 'prop-types'
 
 import './AppointmentSelectButton.scss'
 
-const AppointmentSelectButton = ({ slot, handleAppointmentSelect }) => (
+const AppointmentSelectButton = ({
+  slot,
+  handleAppointmentSelect,
+  selectedAppointment,
+}) => (
   <li
-    className="appointment-button"
+    className={selectedAppointment === slot ? 'selected' : 'appointment-button'}
     onClick={() => handleAppointmentSelect(slot)}
   >
     {slot.time}
@@ -15,6 +19,7 @@ const AppointmentSelectButton = ({ slot, handleAppointmentSelect }) => (
 AppointmentSelectButton.propTypes = {
   slot: PropTypes.object,
   handleAppointmentSelect: PropTypes.func,
+  selectedAppointment: PropTypes.object,
 }
 
 export default AppointmentSelectButton

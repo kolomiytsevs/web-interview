@@ -9,9 +9,11 @@ import AppointmentSelectButton from './AppointmentSelectButton'
 import AppointmentTypeField from './AppointmentTypeField'
 import NotesInputField from './NotesInputField'
 import SubmitButton from './SubmitButton'
+import ConsultantSelectField from './ConsultantSelectField'
+import AppointmentTimeField from './AppointmentTimeField'
+import Header from './Header'
 
 import './App.scss'
-import ConsultantSelectField from './ConsultantSelectField'
 
 class App extends Component {
   constructor(props) {
@@ -147,26 +149,17 @@ class App extends Component {
 
     return (
       <div className="app">
-        <div className="app-header">
-          <img src={logo} className="app-logo" alt="Babylon Health" />
-        </div>
-        <h2 className="h6">New appointment</h2>
+        <Header />
         <div style={{ maxWidth: 600, margin: '24px auto' }}>
           <ConsultantSelectField
             consultantTypes={consultantTypes}
             handleConsultantSelect={this.handleConsultantSelect}
           />
-          <div>
-            <strong>Date &amp; Time</strong>
-            <br />
-            {slots.map((slot, index) => (
-              <AppointmentSelectButton
-                slot={slot}
-                handleAppointmentSelect={this.handleAppointmentSelect}
-                key={index}
-              />
-            ))}
-          </div>
+          <AppointmentTimeField
+            handleAppointmentSelect={this.handleAppointmentSelect}
+            slots={slots}
+            selectedAppointment={this.state.selectedAppointment}
+          />
           {this.state.selectedAppointment && (
             <AppointmentTypeField
               handleAppointmentTypeSelect={this.handleAppointmentTypeSelect}
