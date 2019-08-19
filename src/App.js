@@ -5,6 +5,7 @@ import { API_ENDPOINT } from './config'
 
 import ConsultantSelectButton from './ConsultantSelectButton'
 import AppointmentSelectButton from './AppointmentSelectButton'
+import AppointmentTypeField from './AppointmentTypeField'
 
 import './App.scss'
 
@@ -14,13 +15,18 @@ class App extends Component {
 
     this.state = {
       userId: 1,
-      selectedAppointmentType: 'gp',
+      selectedConsultantType: 'gp',
       availableSlots: [],
       selectedAppointment: null,
+      selectedAppointmentType: null,
       error: null,
     }
     this.handleConsultantSelect = this.handleConsultantSelect.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleAppointmentSelect = this.handleAppointmentSelect.bind(this)
+    this.handleAppointmentTypeSelect = this.handleAppointmentTypeSelect.bind(
+      this
+    )
   }
 
   componentDidMount() {
@@ -41,15 +47,26 @@ class App extends Component {
 
   handleConsultantSelect(event) {
     console.log(event.target.getAttribute('name').toLowerCase())
-    const selectedAppointmentType = event.target
+    const selectedConsultantType = event.target
       .getAttribute('name')
       .toLowerCase()
-    this.setState({ selectedAppointmentType })
+    this.setState({
+      selectedConsultantType,
+      selectedAppointment: null,
+    })
   }
 
   handleAppointmentSelect(slot) {
     const time = slot.time
     console.log(time)
+    this.setState({
+      selectedAppointment: slot,
+      selectedAppointmentType: null,
+    })
+  }
+
+  handleAppointmentTypeSelect(selectedAppointmentType) {
+    this.setState({ selectedAppointmentType })
   }
 
   handleSubmit() {
@@ -67,7 +84,7 @@ class App extends Component {
       ) {
         if (
           this.state.availableSlots[i]['consultantType'][j] ===
-          this.state.selectedAppointmentType
+          this.state.selectedConsultantType
         ) {
           slots.push(this.state.availableSlots[i])
         }
@@ -92,7 +109,7 @@ class App extends Component {
             />
           ))}
           <div>
-            <strong>Appointments</strong>
+            <strong>Date &amp; Time</strong>
             <br />
             {slots.map((slot, index) => (
               <AppointmentSelectButton
@@ -102,8 +119,20 @@ class App extends Component {
               />
             ))}
           </div>
+          {this.state.selectedAppointment && (
+            <div>
+              <strong>Appointment Type</strong>
+              <br />
+              <AppointmentTypeField
+                handleAppointmentTypeSelect={this.handleAppointmentTypeSelect}
+                appointmentType={this.state.selectedAppointment.appointmentType}
+              />
+            </div>
+          )}
+
           <div>
             <strong>Notes</strong>
+            <br />
             <textarea />
           </div>
           <div>

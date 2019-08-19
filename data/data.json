@@ -12,7 +12,7 @@
     {
       "id": 1,
       "consultantType": ["gp"],
-      "appointmentType": ["audio", "video"],
+      "appointmentType": ["audio"],
       "time": "2019-11-27T10:11:00.000Z"
     },
     {

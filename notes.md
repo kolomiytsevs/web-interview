@@ -28,6 +28,10 @@ Git issues:
 - Also had to reinstall prettier as it wasn't found.
 - Added key to slot map.
 
+### In Progress Notes
+- Used conditional rendering for Appointment Type field (video/audio) to make sure it was only displayed when an appointment 
+  for a specific consultant stype was available. Don't want it to display if not appointments are available.
+
 You should:
 - provide an overview of how you approached this challenge
 - explain any trade-offs you made here, for example if you decided to take less time on the styling so you could concentrate on tests
