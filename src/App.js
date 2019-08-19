@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 import logo from './logo.png'
 import { API_ENDPOINT } from './config'
@@ -16,6 +17,7 @@ class App extends Component {
 
     this.state = {
       userId: 1,
+      user: null,
       selectedConsultantType: 'gp',
       availableSlots: [],
       selectedAppointment: null,
@@ -39,13 +41,28 @@ class App extends Component {
       .attachEventHandler('click', this.onClick)
     */
 
+    Promise.all([
+      axios.get(`${API_ENDPOINT}/availableSlots`),
+      axios.get(`${API_ENDPOINT}/users/${this.state.userId}`),
+    ])
+      .then(([availableSlots, user]) => {
+        availableSlots = availableSlots.data
+        user = user.data
+        this.setState({
+          availableSlots,
+          user,
+        })
+      })
+      .catch(error => this.setState({ error }))
+
+    /*
     fetch(`${API_ENDPOINT}/availableSlots`)
       .then(res => res.json())
       .then(json => {
         this.setState({ availableSlots: json })
         console.log(json)
       })
-      .catch(error => this.setState({ error }))
+      .catch(error => this.setState({ error }))*/
   }
 
   handleConsultantSelect(event) {
@@ -80,8 +97,28 @@ class App extends Component {
     })
   }
 
-  handleSubmit() {
+  handleSub() {
     console.log('appointment booked')
+  }
+
+  handleSubmit = async ({ userId, dateTime, notes, type }) => {
+    try {
+      let res = axios({
+        method: 'post',
+        url: `${API_ENDPOINT}/appointments`,
+        data: {
+          userId,
+          dateTime,
+          notes,
+          type,
+        },
+      })
+
+      let { data } = await res
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   render() {
@@ -144,7 +181,7 @@ class App extends Component {
             handleInputChange={this.handleInputChange}
           />
           <div>
-            <div className="button" onClick={this.handleSubmit}>
+            <div className="button" onClick={this.handleSub}>
               Book appointment
             </div>
           </div>
