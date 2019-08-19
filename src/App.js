@@ -14,6 +14,7 @@ import AppointmentTimeField from './AppointmentTimeField'
 import Header from './Header'
 
 import './App.scss'
+import Profile from './Profile'
 
 class App extends Component {
   constructor(props) {
@@ -146,11 +147,13 @@ class App extends Component {
     }
 
     const consultantTypes = ['GP', 'Therapist', 'Physio', 'Specialist']
+    console.log(this.state.user)
 
     return (
       <div className="app">
         <Header />
         <div style={{ maxWidth: 600, margin: '24px auto' }}>
+          {this.state.user && <Profile user={this.state.user} />}
           <ConsultantSelectField
             consultantTypes={consultantTypes}
             handleConsultantSelect={this.handleConsultantSelect}
