@@ -154,6 +154,7 @@ class App extends Component {
           <ConsultantSelectField
             consultantTypes={consultantTypes}
             handleConsultantSelect={this.handleConsultantSelect}
+            selectedConsultantType={this.state.selectedConsultantType}
           />
           <AppointmentTimeField
             handleAppointmentSelect={this.handleAppointmentSelect}
@@ -164,6 +165,7 @@ class App extends Component {
             <AppointmentTypeField
               handleAppointmentTypeSelect={this.handleAppointmentTypeSelect}
               appointmentType={this.state.selectedAppointment.appointmentType}
+              selectedAppointmentType={this.state.selectedAppointmentType}
             />
           )}
           <NotesInputField
