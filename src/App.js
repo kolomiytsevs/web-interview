@@ -11,6 +11,7 @@ import NotesInputField from './NotesInputField'
 import SubmitButton from './SubmitButton'
 
 import './App.scss'
+import ConsultantSelectField from './ConsultantSelectField'
 
 class App extends Component {
   constructor(props) {
@@ -27,12 +28,12 @@ class App extends Component {
       error: null,
     }
     this.handleConsultantSelect = this.handleConsultantSelect.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
     this.handleAppointmentSelect = this.handleAppointmentSelect.bind(this)
     this.handleAppointmentTypeSelect = this.handleAppointmentTypeSelect.bind(
       this
     )
     this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentDidMount() {
@@ -146,18 +147,15 @@ class App extends Component {
 
     return (
       <div className="app">
-        <h2 className="h6">New appointment</h2>
         <div className="app-header">
           <img src={logo} className="app-logo" alt="Babylon Health" />
         </div>
+        <h2 className="h6">New appointment</h2>
         <div style={{ maxWidth: 600, margin: '24px auto' }}>
-          {consultantTypes.map((type, index) => (
-            <ConsultantSelectButton
-              consultantType={type}
-              handleConsultantSelect={this.handleConsultantSelect}
-              key={index}
-            />
-          ))}
+          <ConsultantSelectField
+            consultantTypes={consultantTypes}
+            handleConsultantSelect={this.handleConsultantSelect}
+          />
           <div>
             <strong>Date &amp; Time</strong>
             <br />
@@ -170,25 +168,16 @@ class App extends Component {
             ))}
           </div>
           {this.state.selectedAppointment && (
-            <div>
-              <strong>Appointment Type</strong>
-              <br />
-              <AppointmentTypeField
-                handleAppointmentTypeSelect={this.handleAppointmentTypeSelect}
-                appointmentType={this.state.selectedAppointment.appointmentType}
-              />
-            </div>
+            <AppointmentTypeField
+              handleAppointmentTypeSelect={this.handleAppointmentTypeSelect}
+              appointmentType={this.state.selectedAppointment.appointmentType}
+            />
           )}
           <NotesInputField
             value={this.state.notes}
             handleInputChange={this.handleInputChange}
           />
           <SubmitButton handleSubmit={this.handleSubmit} />
-          <div>
-            <div className="button" onClick={this.handleSub}>
-              Book appointment
-            </div>
-          </div>
         </div>
       </div>
     )

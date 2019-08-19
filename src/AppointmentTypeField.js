@@ -6,16 +6,21 @@ import './AppointmentTypeField.scss'
 const AppointmentTypeField = ({
   appointmentType,
   handleAppointmentTypeSelect,
-}) =>
-  appointmentType.map((type, index) => (
-    <div
-      className="appointment-type-button"
-      key={index}
-      onClick={() => handleAppointmentTypeSelect(type)}
-    >
-      {type}
-    </div>
-  ))
+}) => (
+  <div>
+    <strong>Appointment Type</strong>
+    <br />
+    {appointmentType.map((type, index) => (
+      <div
+        className="appointment-type-button"
+        key={index}
+        onClick={() => handleAppointmentTypeSelect(type)}
+      >
+        {type}
+      </div>
+    ))}
+  </div>
+)
 
 AppointmentTypeField.defaultProps = {
   appointmentType: ['video', 'audio'],
