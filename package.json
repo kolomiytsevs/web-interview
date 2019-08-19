@@ -6,11 +6,15 @@
     "node": ">=10.13"
   },
   "scripts": {
-    "start": "yarn server & react-scripts start",
+    "start": "react-scripts start & yarn server",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "precommit": "lint-staged",
     "server": "yarn json-server --watch ./data/data.json --port 3010"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
     "*.js": [
@@ -28,7 +32,7 @@
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
-    "husky": "^2.5.0",
+    "husky": "^3.0.4",
     "lint-staged": "^8.2.1",
     "react-scripts": "^3.0.1"
   },
