@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import logo from './logo.png'
 import { API_ENDPOINT } from './config'
 
+import ConsultantSelectButton from './ConsultantSelectButton'
+
 import './App.scss'
 
 class App extends Component {
@@ -14,6 +16,7 @@ class App extends Component {
       selectedAppointmentType: 'gp',
       availableSlots: [],
     }
+    this.handleConsultantSelect = this.handleConsultantSelect.bind(this)
   }
 
   componentDidMount() {
@@ -33,8 +36,12 @@ class App extends Component {
       })
   }
 
-  onClick() {
-    this.setState({ selectedAppointmentType: 'gp' })
+  handleConsultantSelect(event) {
+    console.log(event.target.getAttribute('name').toLowerCase())
+    const selectedAppointmentType = event.target
+      .getAttribute('name')
+      .toLowerCase()
+    this.setState({ selectedAppointmentType })
   }
 
   render() {
@@ -55,6 +62,8 @@ class App extends Component {
       }
     }
 
+    const consultantTypes = ['GP', 'Therapist', 'Physio', 'Specialist']
+
     return (
       <div className="app">
         <h2 className="h6">New appointment</h2>
@@ -62,33 +71,13 @@ class App extends Component {
           <img src={logo} className="app-logo" alt="Babylon Health" />
         </div>
         <div style={{ maxWidth: 600, margin: '24px auto' }}>
-          <div className="button" id="GP-button">
-            GP
-          </div>
-          <div
-            className="button"
-            onClick={e => {
-              this.setState({ selectedAppointmentType: 'Therapist' })
-            }}
-          >
-            Therapist
-          </div>
-          <div
-            className="button"
-            onClick={e => {
-              this.setState({ selectedAppointmentType: 'Physio' })
-            }}
-          >
-            Physio
-          </div>
-          <div
-            className="button"
-            onClick={e => {
-              this.setState({ selectedAppointmentType: 'specialist' })
-            }}
-          >
-            Specialist
-          </div>
+          {consultantTypes.map((type, index) => (
+            <ConsultantSelectButton
+              consultantType={type}
+              handleConsultantSelect={this.handleConsultantSelect}
+              key={index}
+            />
+          ))}
           <div>
             <strong>Appointments</strong>
             {slots.map((slot, index) => (
