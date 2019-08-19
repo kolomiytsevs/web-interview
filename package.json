@@ -32,7 +32,11 @@
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
+    "check-prop-types": "^1.1.2",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "husky": "^3.0.4",
+    "jest-enzyme": "^7.1.0",
     "lint-staged": "^8.2.1",
     "react-scripts": "^3.0.1"
   },
