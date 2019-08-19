@@ -4,6 +4,7 @@ import logo from './logo.png'
 import { API_ENDPOINT } from './config'
 
 import ConsultantSelectButton from './ConsultantSelectButton'
+import AppointmentSelectButton from './AppointmentSelectButton'
 
 import './App.scss'
 
@@ -33,6 +34,7 @@ class App extends Component {
       .then(res => res.json())
       .then(json => {
         this.setState({ availableSlots: json })
+        console.log(json)
       })
       .catch(error => this.setState({ error }))
   }
@@ -67,7 +69,7 @@ class App extends Component {
           this.state.availableSlots[i]['consultantType'][j] ===
           this.state.selectedAppointmentType
         ) {
-          slots.push(this.state.availableSlots[j])
+          slots.push(this.state.availableSlots[i])
         }
       }
     }
@@ -91,14 +93,13 @@ class App extends Component {
           ))}
           <div>
             <strong>Appointments</strong>
+            <br />
             {slots.map((slot, index) => (
-              <li
+              <AppointmentSelectButton
+                slot={slot}
+                handleAppointmentSelect={this.handleAppointmentSelect}
                 key={index}
-                className="appointment-button"
-                onClick={() => this.handleAppointmentSelect(slot)}
-              >
-                {slot.time}
-              </li>
+              />
             ))}
           </div>
           <div>
