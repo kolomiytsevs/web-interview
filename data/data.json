@@ -99,13 +99,6 @@
         "video"
       ],
       "dateTime": "2019-08-30T20:21:30.000Z"
-    },
-    {
-      "userId": 1,
-      "dateTime": "2019-11-16T16:18:30.000Z",
-      "notes": "achey breaky heart",
-      "type": "therapist appointment",
-      "id": 2
     }
   ]
 }

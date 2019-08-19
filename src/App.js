@@ -29,6 +29,7 @@ class App extends Component {
       selectedAppointmentType: null,
       notes: '',
       error: null,
+      message: null,
     }
     this.handleConsultantSelect = this.handleConsultantSelect.bind(this)
     this.handleAppointmentSelect = this.handleAppointmentSelect.bind(this)
@@ -103,28 +104,43 @@ class App extends Component {
   }
 
   handleSubmit = async () => {
-    try {
-      const {
-        userId,
-        selectedAppointment,
-        notes,
-        selectedConsultantType,
-      } = this.state
-      let res = axios({
-        method: 'post',
-        url: `${API_ENDPOINT}/appointments`,
-        data: {
-          userId,
-          dateTime: selectedAppointment.time,
-          notes,
-          type: `${selectedConsultantType} appointment`,
-        },
-      })
+    const {
+      userId,
+      selectedAppointment,
+      notes,
+      selectedConsultantType,
+    } = this.state
+    if (!userId || !selectedAppointment || !notes || !selectedConsultantType) {
+      this.setState({ error: 'please select all fields' })
+    } else {
+      try {
+        let res = axios({
+          method: 'post',
+          url: `${API_ENDPOINT}/appointments`,
+          data: {
+            userId,
+            dateTime: selectedAppointment.time,
+            notes,
+            type: `${selectedConsultantType} appointment`,
+          },
+        })
 
-      let { data } = await res
-      console.log(data)
-    } catch (error) {
-      console.log(error)
+        let { data } = await res
+        this.setState({
+          message: `Appointment Booked`,
+        })
+        console.log(data)
+        this.setState({
+          selectedConsultantType: 'gp',
+          availableSlots: [],
+          selectedAppointment: null,
+          selectedAppointmentType: null,
+          notes: '',
+          error: null,
+        })
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 
@@ -175,6 +191,7 @@ class App extends Component {
             value={this.state.notes}
             handleInputChange={this.handleInputChange}
           />
+          <div>{this.state.error}</div>
           <SubmitButton handleSubmit={this.handleSubmit} />
         </div>
       </div>
