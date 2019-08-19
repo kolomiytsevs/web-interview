@@ -6,6 +6,7 @@ import { API_ENDPOINT } from './config'
 import ConsultantSelectButton from './ConsultantSelectButton'
 import AppointmentSelectButton from './AppointmentSelectButton'
 import AppointmentTypeField from './AppointmentTypeField'
+import NotesInputField from './NotesInputField'
 
 import './App.scss'
 
@@ -19,6 +20,7 @@ class App extends Component {
       availableSlots: [],
       selectedAppointment: null,
       selectedAppointmentType: null,
+      notes: '',
       error: null,
     }
     this.handleConsultantSelect = this.handleConsultantSelect.bind(this)
@@ -27,6 +29,7 @@ class App extends Component {
     this.handleAppointmentTypeSelect = this.handleAppointmentTypeSelect.bind(
       this
     )
+    this.handleInputChange = this.handleInputChange.bind(this)
   }
 
   componentDidMount() {
@@ -69,6 +72,14 @@ class App extends Component {
     this.setState({ selectedAppointmentType })
   }
 
+  handleInputChange(event) {
+    const { name, value } = event.target
+
+    this.setState({
+      [name]: value,
+    })
+  }
+
   handleSubmit() {
     console.log('appointment booked')
   }
@@ -92,7 +103,6 @@ class App extends Component {
     }
 
     const consultantTypes = ['GP', 'Therapist', 'Physio', 'Specialist']
-    console.log(slots)
 
     return (
       <div className="app">
@@ -129,12 +139,10 @@ class App extends Component {
               />
             </div>
           )}
-
-          <div>
-            <strong>Notes</strong>
-            <br />
-            <textarea />
-          </div>
+          <NotesInputField
+            value={this.state.notes}
+            handleInputChange={this.handleInputChange}
+          />
           <div>
             <div className="button" onClick={this.handleSubmit}>
               Book appointment
