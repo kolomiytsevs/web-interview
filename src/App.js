@@ -15,6 +15,7 @@ class App extends Component {
       userId: 1,
       selectedAppointmentType: 'gp',
       availableSlots: [],
+      error: null,
     }
     this.handleConsultantSelect = this.handleConsultantSelect.bind(this)
   }
@@ -31,9 +32,7 @@ class App extends Component {
       .then(json => {
         this.setState({ availableSlots: json })
       })
-      .catch(() => {
-        // TODO: Handle error here
-      })
+      .catch(error => this.setState({ error }))
   }
 
   handleConsultantSelect(event) {
