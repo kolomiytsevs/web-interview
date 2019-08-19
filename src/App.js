@@ -53,7 +53,7 @@ class App extends Component {
         j++
       ) {
         if (
-          this.state.availableSlots[j]['consultantType'][i] ===
+          this.state.availableSlots[i]['consultantType'][j] ===
           this.state.selectedAppointmentType
         ) {
           slots.push(this.state.availableSlots[j])
