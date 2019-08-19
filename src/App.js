@@ -8,6 +8,7 @@ import ConsultantSelectButton from './ConsultantSelectButton'
 import AppointmentSelectButton from './AppointmentSelectButton'
 import AppointmentTypeField from './AppointmentTypeField'
 import NotesInputField from './NotesInputField'
+import SubmitButton from './SubmitButton'
 
 import './App.scss'
 
@@ -97,20 +98,22 @@ class App extends Component {
     })
   }
 
-  handleSub() {
-    console.log('appointment booked')
-  }
-
-  handleSubmit = async ({ userId, dateTime, notes, type }) => {
+  handleSubmit = async () => {
     try {
+      const {
+        userId,
+        selectedAppointment,
+        notes,
+        selectedConsultantType,
+      } = this.state
       let res = axios({
         method: 'post',
         url: `${API_ENDPOINT}/appointments`,
         data: {
           userId,
-          dateTime,
+          dateTime: selectedAppointment.time,
           notes,
-          type,
+          type: `${selectedConsultantType} appointment`,
         },
       })
 
@@ -180,6 +183,7 @@ class App extends Component {
             value={this.state.notes}
             handleInputChange={this.handleInputChange}
           />
+          <SubmitButton handleSubmit={this.handleSubmit} />
           <div>
             <div className="button" onClick={this.handleSub}>
               Book appointment
