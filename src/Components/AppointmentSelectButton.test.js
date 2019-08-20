@@ -2,16 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import AppointmentSelectButton from './AppointmentSelectButton'
 import checkPropTypes from 'check-prop-types'
-
-const checkProps = (component, expectedProps) => {
-  const propsErr = checkPropTypes(
-    component.propTypes,
-    expectedProps,
-    'props',
-    component.name
-  )
-  return propsErr
-}
+import { checkProps } from '../../Utils'
 
 describe('AppointmentSelectButton Component', () => {
   describe('Checking PropTypes', () => {
