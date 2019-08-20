@@ -1,7 +1,6 @@
 import React from 'react'
-import Enzyme, { shallow, mount } from 'enzyme'
+import Enzyme, { shallow } from 'enzyme'
 import NotesInputField from './NotesInputField'
-import checkPropTypes from 'check-prop-types'
 import { checkProps } from '../../Utils'
 import Adapter from 'enzyme-adapter-react-16'
 
