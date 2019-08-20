@@ -38,15 +38,10 @@ class App extends Component {
     )
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.resetForm = this.resetForm.bind(this)
   }
 
   componentDidMount() {
-    /*document
-      .querySelectorAll('button')
-      .querySelectorAll('[id=GP-button]')
-      .attachEventHandler('click', this.onClick)
-    */
-
     Promise.all([
       axios.get(`${API_ENDPOINT}/availableSlots`),
       axios.get(`${API_ENDPOINT}/users/${this.state.userId}`),
@@ -60,15 +55,6 @@ class App extends Component {
         })
       })
       .catch(error => this.setState({ error }))
-
-    /*
-    fetch(`${API_ENDPOINT}/availableSlots`)
-      .then(res => res.json())
-      .then(json => {
-        this.setState({ availableSlots: json })
-        console.log(json)
-      })
-      .catch(error => this.setState({ error }))*/
   }
 
   handleConsultantSelect(event) {
@@ -103,6 +89,16 @@ class App extends Component {
     })
   }
 
+  resetForm() {
+    this.setState({
+      selectedConsultantType: 'gp',
+      selectedAppointment: null,
+      selectedAppointmentType: null,
+      notes: '',
+      error: null,
+    })
+  }
+
   handleSubmit = async () => {
     const {
       userId,
@@ -110,6 +106,7 @@ class App extends Component {
       notes,
       selectedConsultantType,
     } = this.state
+
     if (!userId || !selectedAppointment || !notes || !selectedConsultantType) {
       this.setState({ error: 'please select all fields' })
     } else {
@@ -130,16 +127,9 @@ class App extends Component {
           message: `Appointment Booked`,
         })
         console.log(data)
-        this.setState({
-          selectedConsultantType: 'gp',
-          availableSlots: [],
-          selectedAppointment: null,
-          selectedAppointmentType: null,
-          notes: '',
-          error: null,
-        })
+        this.resetForm()
       } catch (error) {
-        console.log(error)
+        this.setState({ error })
       }
     }
   }

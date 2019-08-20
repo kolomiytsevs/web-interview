@@ -8,12 +8,12 @@ const AppointmentSelectButton = ({
   handleAppointmentSelect,
   selectedAppointment,
 }) => (
-  <li
+  <div
     className={selectedAppointment === slot ? 'selected' : 'appointment-button'}
     onClick={() => handleAppointmentSelect(slot)}
   >
     {slot.time}
-  </li>
+  </div>
 )
 
 AppointmentSelectButton.propTypes = {
