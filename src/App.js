@@ -9,6 +9,7 @@ import SubmitButton from './SubmitButton'
 import ConsultantSelectField from './ConsultantSelectField'
 import AppointmentTimeField from './AppointmentTimeField'
 import Header from './Header'
+import Spinner from './Spinner'
 
 import './App.scss'
 import Profile from './Profile'
@@ -27,6 +28,7 @@ class App extends Component {
       notes: '',
       error: null,
       message: null,
+      loading: false,
     }
     this.handleConsultantSelect = this.handleConsultantSelect.bind(this)
     this.handleAppointmentSelect = this.handleAppointmentSelect.bind(this)
@@ -37,22 +39,40 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.resetForm = this.resetForm.bind(this)
     this.getMatchingSlots = this.getMatchingSlots.bind(this)
+    this.getUser = this.getUser.bind(this)
+    this.getAvailableAppointments = this.getAvailableAppointments.bind(this)
+    this.fetchPageData = this.fetchPageData.bind(this)
   }
 
   componentDidMount() {
-    Promise.all([
-      axios.get(`${API_ENDPOINT}/availableSlots`),
-      axios.get(`${API_ENDPOINT}/users/${this.state.userId}`),
-    ])
+    this.fetchPageData()
+  }
+
+  fetchPageData() {
+    this.setState({ loading: true })
+    Promise.all([this.getAvailableAppointments(), this.getUser()])
       .then(([availableSlots, user]) => {
         availableSlots = availableSlots.data
         user = user.data
         this.setState({
           availableSlots,
           user,
+          loading: false,
         })
       })
-      .catch(error => this.setState({ error }))
+      .catch(error =>
+        this.setState({
+          error,
+          loading: false,
+        })
+      )
+  }
+
+  getUser() {
+    return axios.get(`${API_ENDPOINT}/users/${this.state.userId}`)
+  }
+  getAvailableAppointments() {
+    return axios.get(`${API_ENDPOINT}/availableSlots`)
   }
 
   getMatchingSlots() {
@@ -146,6 +166,7 @@ class App extends Component {
     return (
       <div className="app">
         <Header />
+        {this.state.loading && <Spinner />}
         {this.state.error ? (
           <p>We are current experiencing problems, please try again later.</p>
         ) : (
