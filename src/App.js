@@ -3,16 +3,10 @@ import axios from 'axios'
 
 import { API_ENDPOINT } from './config'
 
-import AppointmentTypeField from './AppointmentTypeField'
-import NotesInputField from './NotesInputField'
-import SubmitButton from './SubmitButton'
-import ConsultantSelectField from './ConsultantSelectField'
-import AppointmentTimeField from './AppointmentTimeField'
 import Header from './Header'
 import Spinner from './Spinner'
 
 import './App.scss'
-import Profile from './Profile'
 import Body from './Body'
 
 class App extends Component {

@@ -11,19 +11,20 @@ const AppointmentTimeField = ({
   <div>
     <strong>Date &amp; Time</strong>
     <br />
-
-    {slots.length ? (
-      slots.map((slot, index) => (
-        <AppointmentSelectButton
-          slot={slot}
-          handleAppointmentSelect={handleAppointmentSelect}
-          key={index}
-          selectedAppointment={selectedAppointment}
-        />
-      ))
-    ) : (
-      <p>No Appointment Available</p>
-    )}
+    <div className="scroll-field">
+      {slots.length ? (
+        slots.map((slot, index) => (
+          <AppointmentSelectButton
+            slot={slot}
+            handleAppointmentSelect={handleAppointmentSelect}
+            key={index}
+            selectedAppointment={selectedAppointment}
+          />
+        ))
+      ) : (
+        <p>No Appointment Available</p>
+      )}
+    </div>
   </div>
 )
 

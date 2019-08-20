@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Profile = ({ user }) => (
-  <div>
-    <img src={user.avatar} alt="" />
+  <div className="profile-container">
+    <img src={user.avatar} alt="" className="avatar-image" />
     <h2>
       {user.firstName} {user.lastName}
     </h2>

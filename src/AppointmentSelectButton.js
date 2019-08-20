@@ -20,7 +20,7 @@ const AppointmentSelectButton = ({
   selectedAppointment,
 }) => (
   <div
-    className={selectedAppointment === slot ? 'selected' : 'appointment-button'}
+    className={selectedAppointment === slot ? 'selected' : 'button'}
     onClick={() => handleAppointmentSelect(slot)}
   >
     {formatDate(slot.time)}

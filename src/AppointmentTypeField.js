@@ -13,11 +13,7 @@ const AppointmentTypeField = ({
     <br />
     {appointmentType.map((type, index) => (
       <div
-        className={
-          selectedAppointmentType === type
-            ? 'selected'
-            : 'appointment-type-button'
-        }
+        className={selectedAppointmentType === type ? 'selected' : 'button'}
         key={index}
         onClick={() => handleAppointmentTypeSelect(type)}
       >
