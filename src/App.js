@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-import logo from './logo.png'
 import { API_ENDPOINT } from './config'
 
-import ConsultantSelectButton from './ConsultantSelectButton'
-import AppointmentSelectButton from './AppointmentSelectButton'
 import AppointmentTypeField from './AppointmentTypeField'
 import NotesInputField from './NotesInputField'
 import SubmitButton from './SubmitButton'
@@ -116,7 +113,7 @@ class App extends Component {
     } = this.state
 
     if (!userId || !selectedAppointment || !notes || !selectedConsultantType) {
-      this.setState({ error: 'please select all fields' })
+      this.setState({ message: 'please select all fields' })
     } else {
       try {
         let res = axios({
@@ -143,39 +140,42 @@ class App extends Component {
   }
 
   render() {
-    let slots = this.getMatchingSlots()
+    const slots = this.getMatchingSlots()
     const consultantTypes = ['GP', 'Therapist', 'Physio', 'Specialist']
-    console.log(this.state.user)
 
     return (
       <div className="app">
         <Header />
-        <div style={{ maxWidth: 600, margin: '24px auto' }}>
-          {this.state.user && <Profile user={this.state.user} />}
-          <ConsultantSelectField
-            consultantTypes={consultantTypes}
-            handleConsultantSelect={this.handleConsultantSelect}
-            selectedConsultantType={this.state.selectedConsultantType}
-          />
-          <AppointmentTimeField
-            handleAppointmentSelect={this.handleAppointmentSelect}
-            slots={slots}
-            selectedAppointment={this.state.selectedAppointment}
-          />
-          {this.state.selectedAppointment && (
-            <AppointmentTypeField
-              handleAppointmentTypeSelect={this.handleAppointmentTypeSelect}
-              appointmentType={this.state.selectedAppointment.appointmentType}
-              selectedAppointmentType={this.state.selectedAppointmentType}
+        {this.state.error ? (
+          <p>We are current experiencing problems, please try again later.</p>
+        ) : (
+          <div style={{ maxWidth: 600, margin: '24px auto' }}>
+            {this.state.user && <Profile user={this.state.user} />}
+            <ConsultantSelectField
+              consultantTypes={consultantTypes}
+              handleConsultantSelect={this.handleConsultantSelect}
+              selectedConsultantType={this.state.selectedConsultantType}
             />
-          )}
-          <NotesInputField
-            value={this.state.notes}
-            handleInputChange={this.handleInputChange}
-          />
-          <div>{this.state.error}</div>
-          <SubmitButton handleSubmit={this.handleSubmit} />
-        </div>
+            <AppointmentTimeField
+              handleAppointmentSelect={this.handleAppointmentSelect}
+              slots={slots}
+              selectedAppointment={this.state.selectedAppointment}
+            />
+            {this.state.selectedAppointment && (
+              <AppointmentTypeField
+                handleAppointmentTypeSelect={this.handleAppointmentTypeSelect}
+                appointmentType={this.state.selectedAppointment.appointmentType}
+                selectedAppointmentType={this.state.selectedAppointmentType}
+              />
+            )}
+            <NotesInputField
+              value={this.state.notes}
+              handleInputChange={this.handleInputChange}
+            />
+            <div>{this.state.message}</div>
+            <SubmitButton handleSubmit={this.handleSubmit} />
+          </div>
+        )}
       </div>
     )
   }
