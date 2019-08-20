@@ -4,14 +4,14 @@ import axios from 'axios'
 
 import { API_ENDPOINT } from './config'
 
-import AppointmentTypeField from './AppointmentTypeField'
-import NotesInputField from './NotesInputField'
-import SubmitButton from './SubmitButton'
-import ConsultantSelectField from './ConsultantSelectField'
-import AppointmentTimeField from './AppointmentTimeField'
+import AppointmentTypeField from './Components/AppointmentTypeField'
+import NotesInputField from './Components/NotesInputField'
+import SubmitButton from './Components/SubmitButton'
+import ConsultantSelectField from './Components/ConsultantSelectField'
+import AppointmentTimeField from './Components/AppointmentTimeField'
+import Profile from './Components/Profile'
 
 import './App.scss'
-import Profile from './Profile'
 
 class Body extends Component {
   constructor(props) {
