@@ -1,7 +1,7 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import { shallow } from 'enzyme'
 import ConsultantSelectField from './ConsultantSelectField'
-import checkPropTypes from 'check-prop-types'
 import { checkProps } from '../../Utils'
 
 describe('Consultant Select Field Component', () => {
@@ -15,5 +15,13 @@ describe('Consultant Select Field Component', () => {
       const propsError = checkProps(ConsultantSelectField, expectedProps)
       expect(propsError).toBeUndefined()
     })
+  })
+
+  it('renders without crashing', () => {
+    const props = {
+      consultantTypes: ['GP', 'Therapist', 'Physio', 'Specialist'],
+    }
+    const div = document.createElement('div')
+    ReactDOM.render(<ConsultantSelectField {...props} />, div)
   })
 })
