@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { shallow } from 'enzyme'
 import Header from './Header'
-import { checkProps } from '../Utils'
 
 describe('Header Component', () => {
   it('renders without crashing', () => {

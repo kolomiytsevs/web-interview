@@ -18,14 +18,19 @@ const AppointmentSelectButton = ({
   slot,
   handleAppointmentSelect,
   selectedAppointment,
-}) => (
-  <div
-    className={selectedAppointment === slot ? 'selected' : 'button'}
-    onClick={() => handleAppointmentSelect(slot)}
-  >
-    {formatDate(slot.time)}
-  </div>
-)
+}) =>
+  selectedAppointment ? (
+    <div
+      className={selectedAppointment.time === slot.time ? 'selected' : 'button'}
+      onClick={() => handleAppointmentSelect(slot)}
+    >
+      {formatDate(slot.time)}
+    </div>
+  ) : (
+    <div className={'button'} onClick={() => handleAppointmentSelect(slot)}>
+      {formatDate(slot.time)}
+    </div>
+  )
 
 AppointmentSelectButton.propTypes = {
   slot: PropTypes.object,
