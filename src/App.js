@@ -39,6 +39,7 @@ class App extends Component {
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.resetForm = this.resetForm.bind(this)
+    this.getMatchingSlots = this.getMatchingSlots.bind(this)
   }
 
   componentDidMount() {
@@ -55,6 +56,13 @@ class App extends Component {
         })
       })
       .catch(error => this.setState({ error }))
+  }
+
+  getMatchingSlots() {
+    let slots = this.state.availableSlots.filter(slot =>
+      slot.consultantType.includes(this.state.selectedConsultantType)
+    )
+    return slots
   }
 
   handleConsultantSelect(event) {
@@ -135,23 +143,7 @@ class App extends Component {
   }
 
   render() {
-    // calculate matching slots
-    let slots = []
-    for (let i = 0; i < this.state.availableSlots.length; i++) {
-      for (
-        let j = 0;
-        j < this.state.availableSlots[i]['consultantType'].length;
-        j++
-      ) {
-        if (
-          this.state.availableSlots[i]['consultantType'][j] ===
-          this.state.selectedConsultantType
-        ) {
-          slots.push(this.state.availableSlots[i])
-        }
-      }
-    }
-
+    let slots = this.getMatchingSlots()
     const consultantTypes = ['GP', 'Therapist', 'Physio', 'Specialist']
     console.log(this.state.user)
 
