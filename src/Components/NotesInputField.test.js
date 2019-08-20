@@ -1,8 +1,11 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import Enzyme, { shallow, mount } from 'enzyme'
 import NotesInputField from './NotesInputField'
 import checkPropTypes from 'check-prop-types'
 import { checkProps } from '../../Utils'
+import Adapter from 'enzyme-adapter-react-16'
+
+Enzyme.configure({ adapter: new Adapter() })
 
 describe('Notes Input Field Component', () => {
   describe('Checking PropTypes', () => {
@@ -13,6 +16,18 @@ describe('Notes Input Field Component', () => {
       }
       const propsError = checkProps(NotesInputField, expectedProps)
       expect(propsError).toBeUndefined()
+    })
+  })
+
+  describe('Renders', () => {
+    it('should call handleInputChange prop with input value', () => {
+      const props = {
+        handleInputChange: jest.fn(),
+        value: 'headache',
+      }
+      const wrapper = shallow(<NotesInputField {...props} />)
+      wrapper.find('textarea').simulate('change', 'back ache')
+      expect(props.handleInputChange).toBeCalledWith('back ache')
     })
   })
 })
