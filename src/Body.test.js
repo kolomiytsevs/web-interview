@@ -25,7 +25,8 @@ describe('Body Component', () => {
   })
 
   describe('Body Integration Tests', () => {
-    it('Should show appointment type field once appointment has been selected', () => {
+    let wrapper
+    beforeEach(() => {
       const props = {
         userId: 1,
         user: {
@@ -37,18 +38,47 @@ describe('Body Component', () => {
         },
         availableSlots: availableSlotsData,
       }
-      let wrapper = mount(<Body {...props} />)
-      /*let button = findByClassName(wrapper, 'scroll-field').at(0).childAt(0)
-        button.simulate('click')*/
-
-      let typeContainer = wrapper.find('strong').at(2)
-      expect(typeContainer.text()).toBe('Notes')
-      wrapper.setState({ selectedAppointment: {} })
+      wrapper = mount(<Body {...props} />)
+    })
+    it('Should show appointment type field once appointment has been selected', () => {
+      let button = findByClassName(wrapper, 'scroll-field')
+        .at(1)
+        .childAt(0)
+      let thirdSectionHeader = wrapper.find('strong').at(2)
+      expect(thirdSectionHeader.text()).toBe('Notes')
+      button.simulate('click')
       wrapper.update()
-
-      typeContainer = wrapper.find('strong').at(2)
-
-      expect(typeContainer.text()).toBe('Appointment Type')
+      thirdSectionHeader = wrapper.find('strong').at(2)
+      let typeContainer = findByClassName(wrapper, 'appointment-type-container')
+      expect(typeContainer.length).toBe(1)
+      expect(thirdSectionHeader.text()).toBe('Appointment Type')
+    })
+    it('Should display six gp appointments', () => {
+      let appointments = findByClassName(wrapper, 'scroll-field').at(1)
+      let appointmentSix = appointments.childAt(5)
+      expect(appointmentSix).not.toBeUndefined()
+    })
+    it('Should NOT display appointments when there are none', () => {
+      let physio = findByClassName(wrapper, 'scroll-field')
+        .at(0)
+        .childAt(2)
+      physio.simulate('click')
+      wrapper.update()
+      let appointments = findByClassName(wrapper, 'scroll-field')
+        .at(1)
+        .find('button')
+      expect(appointments.length).toBe(0)
+    })
+    it('Should display no appointments available text when there are no appointments', () => {
+      let physio = findByClassName(wrapper, 'scroll-field')
+        .at(0)
+        .childAt(2)
+      physio.simulate('click')
+      wrapper.update()
+      let appointments = findByClassName(wrapper, 'scroll-field')
+        .at(1)
+        .childAt(0)
+      expect(appointments.text()).toBe('No Appointment Available')
     })
   })
 })

@@ -32,10 +32,7 @@ class App extends Component {
 
   fetchPageData() {
     this.setState({ loading: true })
-    Promise.all([
-      axios.get(`${API_ENDPOINT}/availableSlots`),
-      axios.get(`${API_ENDPOINT}/users/${this.state.userId}`),
-    ])
+    Promise.all([this.getAvailableAppointments(), this.getUser()])
       .then(([availableSlots, user]) => {
         availableSlots = availableSlots.data
         user = user.data

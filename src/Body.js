@@ -57,7 +57,6 @@ class Body extends Component {
 
   handleAppointmentSelect(slot) {
     const time = slot.time
-    console.log(time)
     this.setState({
       selectedAppointment: slot,
       selectedAppointmentType: null,
@@ -121,7 +120,6 @@ class Body extends Component {
         this.setState({
           message: `Appointment Booked`,
         })
-        console.log(data)
         this.resetForm()
       } catch (error) {
         this.setState({ error })
