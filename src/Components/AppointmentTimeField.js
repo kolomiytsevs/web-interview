@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import AppointmentSelectButton from './AppointmentSelectButton'
+import { Clock } from '../svgIcons'
 
 const AppointmentTimeField = ({
   handleAppointmentSelect,
@@ -9,7 +10,10 @@ const AppointmentTimeField = ({
   selectedAppointment,
 }) => (
   <div className="field-container">
-    <strong>Date &amp; Time</strong>
+    <div className="input-label-container">
+      <Clock />
+      <strong>Date &amp; Time</strong>
+    </div>
     <div className="scroll-field">
       {slots.length ? (
         slots.map((slot, index) => (

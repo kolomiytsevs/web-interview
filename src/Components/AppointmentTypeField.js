@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Video } from '../svgIcons'
 
 import './AppointmentTypeField.scss'
 
@@ -9,7 +10,10 @@ const AppointmentTypeField = ({
   selectedAppointmentType,
 }) => (
   <div className="appointment-type-container field-container">
-    <strong>Appointment Type</strong>
+    <div className="input-label-container">
+      <Video />
+      <strong>Appointment Type</strong>
+    </div>
     <div className="scroll-field">
       {appointmentType.map((type, index) => (
         <div

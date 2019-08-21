@@ -1,9 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { Notes } from '../svgIcons'
+
 const NotesInputField = ({ value, handleInputChange }) => (
   <div className="field-container">
-    <strong className="field-title">Notes</strong>
+    <div className="input-label-container">
+      <Notes />
+      <strong className="field-title">Notes</strong>
+    </div>
 
     <textarea
       type="text"

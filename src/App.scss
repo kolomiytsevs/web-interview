@@ -78,6 +78,7 @@
   color: white;
   width: auto;
   height: auto;
+  cursor: pointer;
   margin: 0px 5px;
   display: flex;
   text-align: center;
@@ -119,4 +120,27 @@ h2 {
 
 .notes-input:focus {
   outline: none;
+}
+
+.input-label-container {
+  display: flex;
+
+  strong {
+    margin-left: 5px;
+  }
+}
+
+@media only screen and (max-width: 767px){
+  .menu-svg {
+    position:fixed;
+    top:15px;
+    left:15px;
+    cursor: pointer;
+  }
+
+}
+@media only screen and (min-width: 767px){
+  .menu-svg {
+    display:none;
+  }
 }

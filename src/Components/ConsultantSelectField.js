@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 import ConsultantSelectButton from './ConsultantSelectButton'
+import { Stethascope } from '../svgIcons'
 
 const ConsultantSelectField = ({
   consultantTypes,
@@ -9,7 +10,10 @@ const ConsultantSelectField = ({
   selectedConsultantType,
 }) => (
   <div className="field-container">
-    <strong>Consultant Type</strong>
+    <div className="input-label-container">
+      <Stethascope />
+      <strong>Consultant Type</strong>
+    </div>
     <div className="scroll-field">
       {consultantTypes.map((type, index) => (
         <ConsultantSelectButton
