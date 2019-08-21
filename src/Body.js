@@ -174,14 +174,12 @@ class Body extends Component {
           selectedConsultantType={this.state.selectedConsultantType}
           error={this.state.consultantErr}
         />
-        {this.state.consultantErr && <div>{this.state.consultantErr}</div>}
         <AppointmentTimeField
           handleAppointmentSelect={this.handleAppointmentSelect}
           slots={slots}
           selectedAppointment={this.state.selectedAppointment}
           error={this.state.timeErr}
         />
-        {this.state.timeErr && <div>{this.state.timeErr}</div>}
         {this.state.selectedAppointment && (
           <div>
             <AppointmentTypeField
@@ -190,7 +188,6 @@ class Body extends Component {
               selectedAppointmentType={this.state.selectedAppointmentType}
               error={this.state.typeErr}
             />
-            {this.state.typeErr && <div>{this.state.typeErr}</div>}
           </div>
         )}
         <NotesInputField
@@ -198,7 +195,6 @@ class Body extends Component {
           handleInputChange={this.handleInputChange}
           error={this.state.notesErr}
         />
-        <div>{this.state.notesErr}</div>
         <SubmitButton handleSubmit={this.handleSubmit} />
       </div>
     )

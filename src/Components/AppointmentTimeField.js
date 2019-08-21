@@ -3,11 +3,13 @@ import PropTypes from 'prop-types'
 
 import AppointmentSelectButton from './AppointmentSelectButton'
 import { Clock } from '../svgIcons'
+import ValidationErrorMessage from './ValidationErrorMessage'
 
 const AppointmentTimeField = ({
   handleAppointmentSelect,
   slots,
   selectedAppointment,
+  error,
 }) => (
   <div className="field-container">
     <div className="input-label-container">
@@ -28,6 +30,7 @@ const AppointmentTimeField = ({
         <p>No Appointment Available</p>
       )}
     </div>
+    <ValidationErrorMessage error={error} />
   </div>
 )
 
@@ -35,6 +38,7 @@ AppointmentTimeField.propTypes = {
   slots: PropTypes.array,
   handleAppointmentSelect: PropTypes.func,
   selectedAppointment: PropTypes.object,
+  error: PropTypes.string,
 }
 
 export default AppointmentTimeField

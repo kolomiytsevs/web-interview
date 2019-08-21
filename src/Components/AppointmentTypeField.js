@@ -1,13 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Video } from '../svgIcons'
 
 import './AppointmentTypeField.scss'
+
+import { Video } from '../svgIcons'
+import ValidationErrorMessage from './ValidationErrorMessage'
 
 const AppointmentTypeField = ({
   appointmentType,
   handleAppointmentTypeSelect,
   selectedAppointmentType,
+  error,
 }) => (
   <div className="appointment-type-container field-container">
     <div className="input-label-container">
@@ -25,6 +28,7 @@ const AppointmentTypeField = ({
         </div>
       ))}
     </div>
+    <ValidationErrorMessage error={error} />
   </div>
 )
 
@@ -36,6 +40,7 @@ AppointmentTypeField.propTypes = {
   appointmentType: PropTypes.array,
   handleAppointmentTypeSelect: PropTypes.func,
   selectedAppointmentType: PropTypes.string,
+  error: PropTypes.string,
 }
 
 export default AppointmentTypeField

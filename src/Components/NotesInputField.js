@@ -2,8 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { Notes } from '../svgIcons'
+import ValidationErrorMessage from './ValidationErrorMessage'
 
-const NotesInputField = ({ value, handleInputChange }) => (
+const NotesInputField = ({ value, handleInputChange, error }) => (
   <div className="field-container">
     <div className="input-label-container">
       <Notes />
@@ -18,12 +19,14 @@ const NotesInputField = ({ value, handleInputChange }) => (
       onChange={handleInputChange}
       className="notes-input"
     />
+    <ValidationErrorMessage error={error} />
   </div>
 )
 
 NotesInputField.propTypes = {
   value: PropTypes.string,
   handleInputChange: PropTypes.func,
+  error: PropTypes.string,
 }
 
 export default NotesInputField
