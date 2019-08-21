@@ -83,6 +83,13 @@ describe('Body Component', () => {
         .childAt(0)
       expect(appointments.text()).toBe('No Appointment Available')
     })
+    it('Should display validation error message if form is submited without all fields filled out', () => {
+      let submit = findByClassName(wrapper, 'submit-button')
+      submit.simulate('click')
+      wrapper.update()
+      let error = findByClassName(wrapper, 'validation-error-message').at(1)
+      expect(error.text()).toBe('*please select an appointment slot')
+    })
   })
 })
 
