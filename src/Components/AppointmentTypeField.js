@@ -8,7 +8,7 @@ const AppointmentTypeField = ({
   handleAppointmentTypeSelect,
   selectedAppointmentType,
 }) => (
-  <div>
+  <div className="appointment-type-container">
     <strong>Appointment Type</strong>
     <br />
     {appointmentType.map((type, index) => (

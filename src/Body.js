@@ -46,7 +46,6 @@ class Body extends Component {
   }
 
   handleConsultantSelect(event) {
-    console.log(event.target.getAttribute('name').toLowerCase())
     const selectedConsultantType = event.target
       .getAttribute('name')
       .toLowerCase()
