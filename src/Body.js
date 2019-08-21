@@ -25,6 +25,10 @@ class Body extends Component {
       error: null,
       message: null,
       loading: false,
+      consultantErr: null,
+      timeErr: null,
+      typeErr: null,
+      notesErr: null,
     }
     this.handleConsultantSelect = this.handleConsultantSelect.bind(this)
     this.handleAppointmentSelect = this.handleAppointmentSelect.bind(this)
@@ -35,13 +39,16 @@ class Body extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.resetForm = this.resetForm.bind(this)
     this.getMatchingSlots = this.getMatchingSlots.bind(this)
+    this.validateInputs = this.validateInputs.bind(this)
   }
 
   getMatchingSlots() {
     const { availableSlots } = this.props
-    let slots = availableSlots.filter(slot =>
-      slot.consultantType.includes(this.state.selectedConsultantType)
-    )
+    let slots = availableSlots
+      .filter(slot =>
+        slot.consultantType.includes(this.state.selectedConsultantType)
+      )
+      .sort((a, b) => (a.time < b.time ? -1 : a.time > b.time ? 1 : 0))
     return slots
   }
 
@@ -85,6 +92,17 @@ class Body extends Component {
     })
   }
 
+  validateInputs(consultant, time, type, notes) {
+    if (!consultant)
+      this.setState({ consultantErr: '*please select a consultant type' })
+    if (!time) this.setState({ timeErr: '*please select an appointment slot' })
+    if (!type) this.setState({ typeErr: '*please select call type' })
+    if (!notes)
+      this.setState({
+        notesErr: '*please tell us a little about your symptoms',
+      })
+  }
+
   handleSubmit = async () => {
     const {
       selectedAppointment,
@@ -93,7 +111,12 @@ class Body extends Component {
       selectedAppointmentType,
     } = this.state
     const { userId } = this.props
-
+    this.validateInputs(
+      selectedConsultantType,
+      selectedAppointment,
+      selectedAppointmentType,
+      notes
+    )
     if (
       !userId ||
       !selectedAppointment ||
@@ -139,22 +162,28 @@ class Body extends Component {
           handleConsultantSelect={this.handleConsultantSelect}
           selectedConsultantType={this.state.selectedConsultantType}
         />
+        {this.state.consultantErr && <div>{this.state.consultantErr}</div>}
         <AppointmentTimeField
           handleAppointmentSelect={this.handleAppointmentSelect}
           slots={slots}
           selectedAppointment={this.state.selectedAppointment}
         />
+        {this.state.timeErr && <div>{this.state.timeErr}</div>}
         {this.state.selectedAppointment && (
-          <AppointmentTypeField
-            handleAppointmentTypeSelect={this.handleAppointmentTypeSelect}
-            appointmentType={this.state.selectedAppointment.appointmentType}
-            selectedAppointmentType={this.state.selectedAppointmentType}
-          />
+          <div>
+            <AppointmentTypeField
+              handleAppointmentTypeSelect={this.handleAppointmentTypeSelect}
+              appointmentType={this.state.selectedAppointment.appointmentType}
+              selectedAppointmentType={this.state.selectedAppointmentType}
+            />
+            {this.state.typeErr && <div>{this.state.typeErr}</div>}
+          </div>
         )}
         <NotesInputField
           value={this.state.notes}
           handleInputChange={this.handleInputChange}
         />
+        {this.state.notesErr && <div>{this.state.notesErr}</div>}
         <div>{this.state.message}</div>
         <SubmitButton handleSubmit={this.handleSubmit} />
       </div>
