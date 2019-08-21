@@ -10,6 +10,7 @@ describe('Appointment Time Field Component', () => {
         slots: [{}, {}, {}],
         handleAppointmentSelect: () => {},
         selectedAppointment: {},
+        error: '',
       }
       const propsError = checkProps(AppointmentTimeField, expectedProps)
       expect(propsError).toBeUndefined()

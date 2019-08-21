@@ -11,6 +11,7 @@ describe('Consultant Select Field Component', () => {
         consultantTypes: ['GP', 'Therapist'],
         handleConsultantSelect: () => {},
         selectedConsultantType: 'gp',
+        error: '',
       }
       const propsError = checkProps(ConsultantSelectField, expectedProps)
       expect(propsError).toBeUndefined()

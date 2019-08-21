@@ -10,6 +10,7 @@ describe('Appointment Type Field Component', () => {
         appointmentType: ['video', 'audio'],
         handleAppointmentTypeSelect: () => {},
         selectedAppointmentType: 'video',
+        error: '',
       }
       const propsError = checkProps(AppointmentTypeField, expectedProps)
       expect(propsError).toBeUndefined()

@@ -23,6 +23,7 @@ describe('Notes Input Field Component', () => {
       const props = {
         handleInputChange: jest.fn(),
         value: 'headache',
+        error: '',
       }
       const wrapper = shallow(<NotesInputField {...props} />)
       wrapper.find('textarea').simulate('change', 'back ache')
