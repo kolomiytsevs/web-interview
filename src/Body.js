@@ -4,12 +4,12 @@ import axios from 'axios'
 
 import { API_ENDPOINT } from './config'
 
-import AppointmentTypeField from './Components/AppointmentTypeField'
-import NotesInputField from './Components/NotesInputField'
-import SubmitButton from './Components/SubmitButton'
-import ConsultantSelectField from './Components/ConsultantSelectField'
-import AppointmentTimeField from './Components/AppointmentTimeField'
-import Profile from './Components/Profile'
+import AppointmentTypeField from './Components/AppointmentTypeField/AppointmentTypeField'
+import NotesInputField from './Components/NotesInputField/NotesInputField'
+import SubmitButton from './Components/SubmitButton/SubmitButton'
+import ConsultantSelectField from './Components/ConsultantSelectField/ConsultantSelectField'
+import AppointmentTimeField from './Components/AppointmentTimeField/AppointmentTimeField'
+import Profile from './Components/Profile/Profile'
 
 import './App.scss'
 
@@ -40,7 +40,7 @@ class Body extends Component {
     this.resetForm = this.resetForm.bind(this)
     this.getMatchingSlots = this.getMatchingSlots.bind(this)
     this.validateInputs = this.validateInputs.bind(this)
-    this.resetValidation = this.resetValidation.bind(this)
+    this.resetValidationErrors = this.resetValidationErrors.bind(this)
   }
 
   getMatchingSlots() {
@@ -94,18 +94,25 @@ class Body extends Component {
   }
 
   validateInputs(consultant, time, type, notes) {
-    this.resetValidation()
-    if (!consultant)
+    this.resetValidationErrors()
+
+    if (!consultant) {
       this.setState({ consultantErr: '*please select a consultant type' })
-    if (!time) this.setState({ timeErr: '*please select an appointment slot' })
-    if (!type) this.setState({ typeErr: '*please select call type' })
-    if (!notes)
+    }
+    if (!time) {
+      this.setState({ timeErr: '*please select an appointment slot' })
+    }
+    if (!type) {
+      this.setState({ typeErr: '*please select call type' })
+    }
+    if (!notes) {
       this.setState({
         notesErr: '*please tell us a little about your symptoms',
       })
+    }
   }
 
-  resetValidation() {
+  resetValidationErrors() {
     this.setState({
       consultantErr: null,
       timeErr: null,
@@ -128,36 +135,26 @@ class Body extends Component {
       selectedAppointmentType,
       notes
     )
-    if (
-      !userId ||
-      !selectedAppointment ||
-      !notes ||
-      !selectedConsultantType ||
-      !selectedAppointmentType
-    ) {
-      this.setState({ message: 'please select all fields' })
-    } else {
-      try {
-        let res = axios({
-          method: 'post',
-          url: `${API_ENDPOINT}/appointments`,
-          data: {
-            userId,
-            dateTime: selectedAppointment.time,
-            notes,
-            consultantType: `${selectedConsultantType} appointment`,
-            appointmentType: selectedAppointmentType,
-          },
-        })
 
-        let { data } = await res
-        this.setState({
-          message: `Appointment Booked`,
-        })
-        this.resetForm()
-      } catch (error) {
-        this.setState({ error })
-      }
+    try {
+      let res = axios({
+        method: 'post',
+        url: `${API_ENDPOINT}/appointments`,
+        data: {
+          userId,
+          dateTime: selectedAppointment.time,
+          notes,
+          consultantType: `${selectedConsultantType} appointment`,
+          appointmentType: selectedAppointmentType,
+        },
+      })
+      let { data } = await res
+      this.setState({
+        message: `Appointment Booked`,
+      })
+      this.resetForm()
+    } catch (error) {
+      this.setState({ error })
     }
   }
 

@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Notes } from '../svgIcons'
-import ValidationErrorMessage from './ValidationErrorMessage'
+import { Notes } from '../../svgIcons'
+import ValidationErrorMessage from '../ValidationErrorMessage/ValidationErrorMessage'
 
 const NotesInputField = ({ value, handleInputChange, error }) => (
   <div className="field-container">

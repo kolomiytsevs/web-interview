@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import AppointmentTimeField from './AppointmentTimeField'
-import { checkProps } from '../../Utils'
+import { checkProps } from '../../../Utils'
 
 describe('Appointment Time Field Component', () => {
   describe('Checking PropTypes', () => {

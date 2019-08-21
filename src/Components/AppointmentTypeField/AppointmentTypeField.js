@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 
 import './AppointmentTypeField.scss'
 
-import { Video } from '../svgIcons'
-import ValidationErrorMessage from './ValidationErrorMessage'
+import { Video } from '../../svgIcons'
+import ValidationErrorMessage from '../ValidationErrorMessage/ValidationErrorMessage'
 
 const AppointmentTypeField = ({
   appointmentType,

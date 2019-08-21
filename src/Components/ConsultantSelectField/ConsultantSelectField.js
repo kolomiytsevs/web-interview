@@ -2,8 +2,8 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 import ConsultantSelectButton from './ConsultantSelectButton'
-import { Stethascope } from '../svgIcons'
-import ValidationErrorMessage from './ValidationErrorMessage'
+import { Stethascope } from '../../svgIcons'
+import ValidationErrorMessage from '../ValidationErrorMessage/ValidationErrorMessage'
 
 const ConsultantSelectField = ({
   consultantTypes,

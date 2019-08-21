@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 
-import logo from './logo.png'
-import { Menu } from './svgIcons'
+import logo from '../../logo.png'
+import { Menu } from '../../svgIcons'
 
 import './Header.scss'
 

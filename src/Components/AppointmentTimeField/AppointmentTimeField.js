@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import AppointmentSelectButton from './AppointmentSelectButton'
-import { Clock } from '../svgIcons'
-import ValidationErrorMessage from './ValidationErrorMessage'
+import { Clock } from '../../svgIcons'
+import ValidationErrorMessage from '../ValidationErrorMessage/ValidationErrorMessage'
 
 const AppointmentTimeField = ({
   handleAppointmentSelect,

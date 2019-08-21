@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { shallow } from 'enzyme'
 import ConsultantSelectField from './ConsultantSelectField'
-import { checkProps } from '../../Utils'
+import { checkProps } from '../../../Utils'
 
 describe('Consultant Select Field Component', () => {
   describe('Checking PropTypes', () => {

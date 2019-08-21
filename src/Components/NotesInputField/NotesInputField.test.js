@@ -1,7 +1,7 @@
 import React from 'react'
 import Enzyme, { shallow } from 'enzyme'
 import NotesInputField from './NotesInputField'
-import { checkProps } from '../../Utils'
+import { checkProps } from '../../../Utils'
 import Adapter from 'enzyme-adapter-react-16'
 
 Enzyme.configure({ adapter: new Adapter() })
