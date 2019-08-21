@@ -110,6 +110,8 @@ class Body extends Component {
         notesErr: '*please tell us a little about your symptoms',
       })
     }
+    if (!notes || !consultant || !time || !type) return false
+    else return true
   }
 
   resetValidationErrors() {
@@ -129,32 +131,34 @@ class Body extends Component {
       selectedAppointmentType,
     } = this.state
     const { userId } = this.props
-    this.validateInputs(
-      selectedConsultantType,
-      selectedAppointment,
-      selectedAppointmentType,
-      notes
-    )
-
-    try {
-      let res = axios({
-        method: 'post',
-        url: `${API_ENDPOINT}/appointments`,
-        data: {
-          userId,
-          dateTime: selectedAppointment.time,
-          notes,
-          consultantType: `${selectedConsultantType} appointment`,
-          appointmentType: selectedAppointmentType,
-        },
-      })
-      let { data } = await res
-      this.setState({
-        message: `Appointment Booked`,
-      })
-      this.resetForm()
-    } catch (error) {
-      this.setState({ error })
+    if (
+      this.validateInputs(
+        selectedConsultantType,
+        selectedAppointment,
+        selectedAppointmentType,
+        notes
+      )
+    ) {
+      try {
+        let res = axios({
+          method: 'post',
+          url: `${API_ENDPOINT}/appointments`,
+          data: {
+            userId,
+            dateTime: selectedAppointment.time,
+            notes,
+            consultantType: `${selectedConsultantType} appointment`,
+            appointmentType: selectedAppointmentType,
+          },
+        })
+        let { data } = await res
+        this.setState({
+          message: `Appointment Booked`,
+        })
+        this.resetForm()
+      } catch (error) {
+        this.setState({ error })
+      }
     }
   }
 

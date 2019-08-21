@@ -16,6 +16,7 @@ const AppointmentTimeField = ({
       <Clock />
       <strong>Date &amp; Time</strong>
     </div>
+
     <div className="scroll-field">
       {slots.length ? (
         slots.map((slot, index) => (
@@ -30,6 +31,7 @@ const AppointmentTimeField = ({
         <p>No Appointment Available</p>
       )}
     </div>
+
     <ValidationErrorMessage error={error} />
   </div>
 )

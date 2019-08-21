@@ -1,74 +1,42 @@
 @import './constants.scss';
 
-.app-header {
-  padding: $gutter-size--large;
-  text-align: center;
-  position: fixed;
-  width:100%;
-  top:0;
-  background-color: rgba(255,255,255, 0.95);
+/* 
+     CONTENTS
+----------------------------------
+-MAIN
+-BUTTONS
+-FORMS/INPUTS
+-USER PROFILE
+-NOTES INPUT
+-MEDIA SIZE
 
-  img {
-    max-height: 33px;
-  }
+----------------------------------
+*/
 
-  border-bottom: $border-standard;
-}
+/* 
+******************
+MAIN
+------------------
+*/
 
 .app {
   margin-top:90px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif ;
 }
 
-.field-container {
-  margin:20px auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.submit-container {
-  width:100%;
+h2 {
+  &.h6 {
+    font-size: 24px;
+    text-align:center;
+  }
 }
 
 
-
-.form-container {
-  justify-items: center;
-  justify-content: center;
-  width:80%;
-  margin: 24px auto;
-  max-width: 800px;
-  
-}
-
-.scroll-field {
-  display: flex;
-  white-space:nowrap;
-  overflow-x: auto;
-  margin-top:20px;
-  
-}
-
-::-webkit-scrollbar {
-  display: none;
-}
-
-.avatar-image {
-  max-width:50px;
-  max-height:50px;
-}
-
-.profile-container {
-  display:flex;
-  border-bottom: $border-standard;
-}
-
-.profile-name {
-  text-align: center; 
-  margin-top: auto ;
-  margin-bottom: 5px;
-  font-weight:600;
-}
+/* 
+******************
+BUTTONS
+------------------
+*/
 
 .button, .selected, .submit-button{
   box-sizing: border-box;
@@ -105,13 +73,79 @@
   margin:0px;
 }
 
-h2 {
-  &.h6 {
-    font-size: 24px;
-    text-align:center;
+/* 
+******************
+FORMS/INPUTS
+------------------
+*/
+
+.field-container {
+  margin:20px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.submit-container {
+  width:100%;
+}
+
+.form-container {
+  justify-items: center;
+  justify-content: center;
+  width:80%;
+  margin: 24px auto;
+  max-width: 800px;
+  
+}
+
+.scroll-field {
+  display: flex;
+  white-space:nowrap;
+  overflow-x: auto;
+  margin-top:20px;
+  
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.input-label-container {
+  display: flex;
+
+  strong {
+    margin-left: 5px;
   }
 }
 
+/* 
+******************
+USER PROFILE
+------------------
+*/
+
+.avatar-image {
+  max-width:50px;
+  max-height:50px;
+}
+
+.profile-container {
+  display:flex;
+  border-bottom: $border-standard;
+}
+
+.profile-name {
+  text-align: center; 
+  margin-top: auto ;
+  margin-bottom: 5px;
+  font-weight:600;
+}
+
+/* 
+******************
+NOTES INPUT
+------------------
+*/
 .notes-input {
   border-radius:10px;
   min-height:100px;
@@ -125,13 +159,9 @@ h2 {
   outline: none;
 }
 
-.input-label-container {
-  display: flex;
 
-  strong {
-    margin-left: 5px;
-  }
-}
+
+
 
 @media only screen and (max-width: 767px){
   .menu-svg {

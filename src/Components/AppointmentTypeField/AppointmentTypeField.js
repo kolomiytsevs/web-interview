@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import './AppointmentTypeField.scss'
-
 import { Video } from '../../svgIcons'
 import ValidationErrorMessage from '../ValidationErrorMessage/ValidationErrorMessage'
 
@@ -17,6 +15,7 @@ const AppointmentTypeField = ({
       <Video />
       <strong>Appointment Type</strong>
     </div>
+
     <div className="scroll-field">
       {appointmentType.map((type, index) => (
         <div
@@ -28,6 +27,7 @@ const AppointmentTypeField = ({
         </div>
       ))}
     </div>
+
     <ValidationErrorMessage error={error} />
   </div>
 )

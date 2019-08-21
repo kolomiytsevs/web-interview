@@ -16,6 +16,7 @@ const ConsultantSelectField = ({
       <Stethascope />
       <strong>Consultant Type</strong>
     </div>
+
     <div className="scroll-field">
       {consultantTypes.map((type, index) => (
         <ConsultantSelectButton
@@ -26,6 +27,7 @@ const ConsultantSelectField = ({
         />
       ))}
     </div>
+
     <ValidationErrorMessage error={error} />
   </div>
 )
