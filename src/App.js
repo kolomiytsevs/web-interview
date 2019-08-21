@@ -4,7 +4,7 @@ import axios from 'axios'
 import { API_ENDPOINT } from './config'
 
 import Header from './Header'
-import Spinner from './Spinner'
+import Spinner from './Components/Spinner'
 
 import './App.scss'
 import Body from './Body'
