@@ -40,6 +40,7 @@ class Body extends Component {
     this.resetForm = this.resetForm.bind(this)
     this.getMatchingSlots = this.getMatchingSlots.bind(this)
     this.validateInputs = this.validateInputs.bind(this)
+    this.resetValidation = this.resetValidation.bind(this)
   }
 
   getMatchingSlots() {
@@ -93,6 +94,7 @@ class Body extends Component {
   }
 
   validateInputs(consultant, time, type, notes) {
+    this.resetValidation()
     if (!consultant)
       this.setState({ consultantErr: '*please select a consultant type' })
     if (!time) this.setState({ timeErr: '*please select an appointment slot' })
@@ -101,6 +103,15 @@ class Body extends Component {
       this.setState({
         notesErr: '*please tell us a little about your symptoms',
       })
+  }
+
+  resetValidation() {
+    this.setState({
+      consultantErr: null,
+      timeErr: null,
+      typeErr: null,
+      notesErr: null,
+    })
   }
 
   handleSubmit = async () => {
@@ -155,18 +166,20 @@ class Body extends Component {
     const consultantTypes = ['GP', 'Therapist', 'Physio', 'Specialist']
 
     return (
-      <div style={{ maxWidth: 600, margin: '24px auto' }}>
+      <div className="form-container">
         {this.props.user && <Profile user={this.props.user} />}
         <ConsultantSelectField
           consultantTypes={consultantTypes}
           handleConsultantSelect={this.handleConsultantSelect}
           selectedConsultantType={this.state.selectedConsultantType}
+          error={this.state.consultantErr}
         />
         {this.state.consultantErr && <div>{this.state.consultantErr}</div>}
         <AppointmentTimeField
           handleAppointmentSelect={this.handleAppointmentSelect}
           slots={slots}
           selectedAppointment={this.state.selectedAppointment}
+          error={this.state.timeErr}
         />
         {this.state.timeErr && <div>{this.state.timeErr}</div>}
         {this.state.selectedAppointment && (
@@ -175,6 +188,7 @@ class Body extends Component {
               handleAppointmentTypeSelect={this.handleAppointmentTypeSelect}
               appointmentType={this.state.selectedAppointment.appointmentType}
               selectedAppointmentType={this.state.selectedAppointmentType}
+              error={this.state.typeErr}
             />
             {this.state.typeErr && <div>{this.state.typeErr}</div>}
           </div>
@@ -182,9 +196,9 @@ class Body extends Component {
         <NotesInputField
           value={this.state.notes}
           handleInputChange={this.handleInputChange}
+          error={this.state.notesErr}
         />
-        {this.state.notesErr && <div>{this.state.notesErr}</div>}
-        <div>{this.state.message}</div>
+        <div>{this.state.notesErr}</div>
         <SubmitButton handleSubmit={this.handleSubmit} />
       </div>
     )

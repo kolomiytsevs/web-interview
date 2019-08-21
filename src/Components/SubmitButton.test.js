@@ -31,11 +31,11 @@ describe('Submit Button Component', () => {
       wrapper = shallow(<SubmitButton {...props} />)
     })
     it('Should Render a button', () => {
-      const button = findByClassName(wrapper, 'button')
+      const button = findByClassName(wrapper, 'submit-button')
       expect(button.length).toBe(1)
     })
     it('Should emit callback on click event', () => {
-      const button = findByClassName(wrapper, 'button')
+      const button = findByClassName(wrapper, 'submit-button')
       button.simulate('click')
       const callback = mockFunc.mock.calls.length
       expect(callback).toBe(1)

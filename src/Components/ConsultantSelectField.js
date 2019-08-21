@@ -8,9 +8,8 @@ const ConsultantSelectField = ({
   handleConsultantSelect,
   selectedConsultantType,
 }) => (
-  <Fragment>
+  <div className="field-container">
     <strong>Consultant Type</strong>
-    <br />
     <div className="scroll-field">
       {consultantTypes.map((type, index) => (
         <ConsultantSelectButton
@@ -21,7 +20,7 @@ const ConsultantSelectField = ({
         />
       ))}
     </div>
-  </Fragment>
+  </div>
 )
 
 ConsultantSelectField.propTypes = {

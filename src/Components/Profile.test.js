@@ -55,7 +55,7 @@ describe('Profile Component', () => {
       expect(img.props().src).toBe('http://www.google.com')
     })
     it('should render full name', () => {
-      const text = wrapper.find('h2')
+      const text = findByClassName(wrapper, 'profile-name')
       expect(text.text()).toBe('Bill Hemmingway')
     })
   })

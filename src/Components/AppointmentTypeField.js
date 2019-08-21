@@ -8,18 +8,19 @@ const AppointmentTypeField = ({
   handleAppointmentTypeSelect,
   selectedAppointmentType,
 }) => (
-  <div className="appointment-type-container">
+  <div className="appointment-type-container field-container">
     <strong>Appointment Type</strong>
-    <br />
-    {appointmentType.map((type, index) => (
-      <div
-        className={selectedAppointmentType === type ? 'selected' : 'button'}
-        key={index}
-        onClick={() => handleAppointmentTypeSelect(type)}
-      >
-        {type}
-      </div>
-    ))}
+    <div className="scroll-field">
+      {appointmentType.map((type, index) => (
+        <div
+          className={selectedAppointmentType === type ? 'selected' : 'button'}
+          key={index}
+          onClick={() => handleAppointmentTypeSelect(type)}
+        >
+          {type}
+        </div>
+      ))}
+    </div>
   </div>
 )
 

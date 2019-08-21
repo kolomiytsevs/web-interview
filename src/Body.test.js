@@ -49,7 +49,10 @@ describe('Body Component', () => {
       button.simulate('click')
       wrapper.update()
       thirdSectionHeader = wrapper.find('strong').at(2)
-      let typeContainer = findByClassName(wrapper, 'appointment-type-container')
+      let typeContainer = findByClassName(
+        wrapper,
+        'appointment-type-container field-container'
+      )
       expect(typeContainer.length).toBe(1)
       expect(thirdSectionHeader.text()).toBe('Appointment Type')
     })

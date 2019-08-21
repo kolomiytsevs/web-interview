@@ -8,9 +8,8 @@ const AppointmentTimeField = ({
   slots,
   selectedAppointment,
 }) => (
-  <div>
+  <div className="field-container">
     <strong>Date &amp; Time</strong>
-    <br />
     <div className="scroll-field">
       {slots.length ? (
         slots.map((slot, index) => (
