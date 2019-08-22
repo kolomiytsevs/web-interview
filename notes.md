@@ -35,7 +35,7 @@ I approached the project step by step as detailed in my initital notes above. It
 - My application currently handles failed get requests with a simple error message. Depending on what the server returns, it may be better to redirect the user to sign in if for example their JWT has expired.
 - I would like to have spent more time on styling. It would probably be good to subdivde the scss into their corresponding component files as it is currently mostly in the App.scss file. I also personally find unnested css easier to read and so try to avoid it when possible. This is just a personal preference. 
 - Just from doing the tests, it's very obvious that my button components for different fields share similar functionality/structure. If I had more time I would try to merge them into one component. 
-- The horizontal scroll bar used on the appointment time field is not supported by other browsers, so may be better to use an alternative.
+- The sytling for the horizontal scroll bar used on the appointment time field is not supported by other browsers, so may be better to use an alternative.
 - Appointment dates have been formatted suing moment.js. However, 'Today' and 'tomorrow' will be displayed on all buttons that match that criteria. It would better if only the first button for the day rendered the 'today' label. 
 - My API POST currently displays appointment type - gp appointment - all in lowercase. This is not quite in keeping with the documentation. Would be good to currect this.
 - On POST, my application currently just reloads the page, it may be better to display a 'Appointment Booked' page. I have adde this functionality by updating state after a post, however didn't have time to actually display it.
@@ -44,7 +44,7 @@ I approached the project step by step as detailed in my initital notes above. It
 
 If I were to redo the challenge, I would probably make sure I was running test as I went along (rather than in chunks as I have done). I would also structure my project a little better form the start with the relevant folders to prevent me having to do mass restructuring. 
 
-If I had more time, I would like to take care of the problems I have discussed above. I would also like to add in a lot more tests - in particular integration tests. I have added a few integration tests to the Body component, but would like to add more to provide good coverage. I chose Jest/Enzyme as this is the bundle I am most familiar with.
+If I had more time, I would like to take care of the problems I have discussed above. I would also like to add in a lot more tests - in particular integration tests. I have added a few integration tests to the Body component, but would like to add more to provide good coverage. I chose Jest/Enzyme as this is the bundle I am most familiar with. I have also not included any Jest snapshot tests. I have found that snapshot tests make it easy to overlook changes and just 'okay' them, so I tend not to rely on them too much. However, I would add these in alongside the other tests - as they are good for testing whther the components have been rendered. 
 Overall I tried not to neglect any particular areas, so given more time, I would probably spend more time on testing, styling, restructuring.
 
 ## General Feedback
