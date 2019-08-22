@@ -95,23 +95,27 @@ class Body extends Component {
 
   validateInputs(consultant, time, type, notes) {
     this.resetValidationErrors()
+    let formIsValid = true
 
     if (!consultant) {
+      formIsValid = false
       this.setState({ consultantErr: '*please select a consultant type' })
     }
     if (!time) {
+      formIsValid = false
       this.setState({ timeErr: '*please select an appointment slot' })
     }
     if (!type) {
+      formIsValid = false
       this.setState({ typeErr: '*please select call type' })
     }
     if (!notes) {
+      formIsValid = false
       this.setState({
         notesErr: '*please tell us a little about your symptoms',
       })
     }
-    if (!notes || !consultant || !time || !type) return false
-    else return true
+    return formIsValid
   }
 
   resetValidationErrors() {
