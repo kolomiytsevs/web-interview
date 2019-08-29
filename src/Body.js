@@ -186,14 +186,12 @@ class Body extends Component {
           error={this.state.timeErr}
         />
         {this.state.selectedAppointment && (
-          <div>
-            <AppointmentTypeField
-              handleAppointmentTypeSelect={this.handleAppointmentTypeSelect}
-              appointmentType={this.state.selectedAppointment.appointmentType}
-              selectedAppointmentType={this.state.selectedAppointmentType}
-              error={this.state.typeErr}
-            />
-          </div>
+          <AppointmentTypeField
+            handleAppointmentTypeSelect={this.handleAppointmentTypeSelect}
+            appointmentType={this.state.selectedAppointment.appointmentType}
+            selectedAppointmentType={this.state.selectedAppointmentType}
+            error={this.state.typeErr}
+          />
         )}
         <NotesInputField
           value={this.state.notes}
